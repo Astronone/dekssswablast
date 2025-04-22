@@ -5,7 +5,13 @@ import io
 
 # Streamlit app setup
 st.set_page_config(page_title="WhatsApp Link Generator", layout="centered")
-st.title("📱 WhatsApp Link Generator")
+
+# Replace title with image
+st.image(
+    "https://raw.githubusercontent.com/Astronone/dekssswablast/main/gadjah.png",
+    use_container_width=True
+)
+
 st.write("Upload a `.csv` or `.xlsx` file with `Pesan` (message) and `Nomor` (phone number). This app creates clickable WhatsApp links.")
 
 # Example file and table
@@ -19,7 +25,7 @@ example_df = pd.DataFrame({
 st.image(
     "https://raw.githubusercontent.com/Astronone/dekssswablast/main/contoh.png",
     caption="Contoh Format File Excel",
-    use_column_width=True
+    use_container_width=True
 )
 st.dataframe(example_df)
 
