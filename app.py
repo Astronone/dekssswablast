@@ -38,6 +38,7 @@ st.image(
 )
 st.write("klik browser file dan pilih file. Jika ingin mengganti file klik tanda silang bagian bawah setelah drag and drop file ")
 
+example_df.index = range(2, 2 + len(example_df))
 st.dataframe(example_df)
 
 # File uploader (CSV and Excel)
