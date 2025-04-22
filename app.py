@@ -6,10 +6,15 @@ import io
 # Streamlit app setup
 st.set_page_config(page_title="WhatsApp Link Generator", layout="centered")
 
-# Replace title with image
-st.image(
-    "https://raw.githubusercontent.com/Astronone/dekssswablast/main/gadjah.png",
-    use_container_width=True
+# Custom image + title layout
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 16px;">
+        <img src="https://raw.githubusercontent.com/Astronone/dekssswablast/main/gadjah.png" alt="Logo" width="128">
+        <h1 style="margin: 0;">Dekss WhatsApp Link Generator</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 st.write("Upload a `.csv` or `.xlsx` file with `Pesan` (message) and `Nomor` (phone number). This app creates clickable WhatsApp links.")
