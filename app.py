@@ -17,11 +17,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write("Upload file  `.xlsx` dengan isi kolom 1 dan row 1 `Pesan` (message) dan kolom 2 row 1  `Nomor` (phone number). Lalu nomor telepon sudah dalam format negara 628*******.")
+st.write("Upload file  `.xlsx` dengan isi kolom 1 dan row 1  `Nomor` (phone number) dan kolom 2 row 1 `Pesan` (message). Lalu nomor telepon sudah dalam format nomor menggunakan kode negara 628*******.")
 
 # Example file and table
-st.markdown("### 📊 Example Format")
-st.write("Row pertama pada kolom A diberi nama 'Nomor' dan kolom B diberi nama 'Nomor' (tampa tanda petik). Kolom A berisikan nomor menggunakan kode negara 628 (tanpa tanda +), dan kolom B berisikan pesan. ")
+st.markdown("### 📊 Format Excell")
+st.write("Row pertama pada kolom A diberi nama `Nomor` dan kolom B diberi nama `Pesan` (tampa tanda petik). Kolom A berisikan nomor menggunakan kode negara 628 (tanpa tanda +), dan kolom B berisikan pesan. ")
 example_df = pd.DataFrame({
     "Nomor": ["6281234567890", "6289876543210"],
     "Pesan": ["Halo! Ini pesan pertama.\nBaris kedua.", "Selamat pagi!"]
@@ -32,10 +32,12 @@ st.image(
     caption="Contoh Format File Excel",
     use_container_width=True
 )
+st.write("klik browser file dan pilih file. Jika ingin mengganti file klik tanda silang bagian bawah setelah drag and drop file ")
+
 st.dataframe(example_df)
 
 # File uploader (CSV and Excel)
-uploaded_file = st.file_uploader("Upload fo;e `.csv` or `.xlsx` file", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader("Upload file `.xlsx` file", type=["csv", "xlsx"])
 
 if uploaded_file:
     try:
@@ -81,4 +83,4 @@ if uploaded_file:
         st.error(f"⚠️ Error processing file: {e}")
 
 else:
-    st.info("📂 Please upload a `.csv` or `.xlsx` file to begin.")
+    st.info("📂 Tolong upload file dengan format `.xlsx`.")
