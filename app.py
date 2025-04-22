@@ -4,7 +4,7 @@ import urllib.parse
 import io
 
 # Streamlit app setup
-st.set_page_config(page_title="WhatsApp Link Generator", layout="centered")
+st.set_page_config(page_title="Dekss WhatsApp Link Generator", layout="centered")
 
 # Custom image + title layout
 st.markdown(
