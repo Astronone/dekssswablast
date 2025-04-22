@@ -26,10 +26,7 @@ st.write("Upload file  `.xlsx` dengan isi kolom 1 dan row 1  `Nomor` (phone numb
 # Example file and table
 st.markdown("### 📊 Format Excell")
 st.write("Row pertama pada kolom A diberi nama `Nomor` dan kolom B diberi nama `Pesan` (tampa tanda petik). Kolom A berisikan nomor menggunakan kode negara 628 (tanpa tanda +), dan kolom B berisikan pesan. ")
-example_df = pd.DataFrame({
-    "Nomor": ["6281234567890", "6289876543210"],
-    "Pesan": ["Halo! Ini pesan pertama.\nBaris kedua.", "Selamat pagi!"]
-})
+
 
 st.image(
     "https://raw.githubusercontent.com/Astronone/dekssswablast/main/contoh.png",
