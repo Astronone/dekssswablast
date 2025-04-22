@@ -17,7 +17,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write("Upload a `.csv` or `.xlsx` file with `Pesan` (message) and `Nomor` (phone number). This app creates clickable WhatsApp links.")
+st.write("Upload file  `.xlsx` dengan isi kolom 1 dan row 1 `Pesan` (message) dan kolom 2 row 1  `Nomor` (phone number). Lalu nomor telepon sudah dalam format negara 628*******.")
 
 # Example file and table
 st.markdown("### 📊 Example Format")
