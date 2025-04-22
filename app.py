@@ -31,6 +31,10 @@ example_df = pd.DataFrame({
     "Pesan": ["Halo! Ini pesan pertama.\nBaris kedua.", "Selamat pagi!"]
 })
 
+# Add numbering column starting from 2
+example_df.insert(0, "No", range(2, 2 + len(example_df)))
+})
+
 st.image(
     "https://raw.githubusercontent.com/Astronone/dekssswablast/main/contoh.png",
     caption="Contoh Format File Excel",
