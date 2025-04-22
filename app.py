@@ -15,6 +15,12 @@ example_df = pd.DataFrame({
     "Nomor": ["6281234567890", "6289876543210"],
     "Pesan": ["Halo! Ini pesan pertama.\nBaris kedua.", "Selamat pagi!"]
 })
+
+st.image(
+    "https://raw.githubusercontent.com/Astronone/dekssswablast/main/contoh.png",
+    caption="Contoh Format File Excel",
+    use_column_width=True
+)
 st.dataframe(example_df)
 
 # File uploader (CSV and Excel)
