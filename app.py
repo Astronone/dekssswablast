@@ -1,0 +1,67 @@
+import pandas as pd
+import streamlit as st
+import urllib.parse
+import io
+
+# Streamlit app setup
+st.set_page_config(page_title="WhatsApp Link Generator", layout="centered")
+st.title("📱 WhatsApp Link Generator")
+st.write("Upload a `.csv` or `.xlsx` file with `Pesan` (message) and `Nomor` (phone number). This app creates clickable WhatsApp links.")
+
+# Example file and table
+st.markdown("### 📊 Example Format")
+st.write("Row pertama pada kolom A diberi nama 'Nomor' dan kolom B diberi nama 'Nomor' (tampa tanda petik). Kolom A berisikan nomor menggunakan kode negara 628 (tanpa tanda +), dan kolom B berisikan pesan. ")
+example_df = pd.DataFrame({
+    "Nomor": ["6281234567890", "6289876543210"],
+    "Pesan": ["Halo! Ini pesan pertama.\nBaris kedua.", "Selamat pagi!"]
+})
+st.dataframe(example_df)
+
+# File uploader (CSV and Excel)
+uploaded_file = st.file_uploader("Upload fo;e `.csv` or `.xlsx` file", type=["csv", "xlsx"])
+
+if uploaded_file:
+    try:
+        # Detect file type and read
+        if uploaded_file.name.endswith(".csv"):
+            df = pd.read_csv(uploaded_file, delimiter=';', dtype=str)
+        else:
+            df = pd.read_excel(uploaded_file, dtype=str)
+
+        # Drop empty rows
+        df.dropna(subset=['Pesan', 'Nomor'], inplace=True)
+
+        # Ensure 'Nomor' is string
+        df['Nomor'] = df['Nomor'].apply(str)
+
+        # Generate WhatsApp links
+        def create_link(row):
+            number = row['Nomor'].strip()
+            message = str(row['Pesan']).replace("\\n", "\n")
+            encoded_message = urllib.parse.quote(message)
+            return f"https://wa.me/{number}?text={encoded_message}"
+
+        df['WhatsApp_Link'] = df.apply(create_link, axis=1)
+
+        # Clickable HTML links
+        df['Clickable_Link'] = df['WhatsApp_Link'].apply(
+            lambda url: f'<a href="{url}" target="_blank">Open Chat</a>'
+        )
+
+        # Display preview
+        st.success("✅ WhatsApp links generated!")
+        st.write("### Preview Table")
+        st.markdown(
+            df[['Pesan', 'Nomor', 'Clickable_Link']].to_html(escape=False, index=False),
+            unsafe_allow_html=True
+        )
+
+        # Download CSV (preserve formatting)
+        csv = df.to_csv(index=False, float_format='%.0f')
+        st.download_button("📥 Download Result CSV", data=csv, file_name="whatsapp_links.csv", mime="text/csv")
+
+    except Exception as e:
+        st.error(f"⚠️ Error processing file: {e}")
+
+else:
+    st.info("📂 Please upload a `.csv` or `.xlsx` file to begin.")
